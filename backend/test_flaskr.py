@@ -18,8 +18,8 @@ class TriviaTestCase(unittest.TestCase):
         self.database_password = "password"
         self.database_username = "postgres"
         self.database_path = "postgres://{}:{}@{}/{}".format(self.database_username, self.database_password,'localhost:5432', self.database_name)
-        setup_db(self.app, self.database_path)
-
+        setup_db(self.app)
+            
         # binds the app to the current context
         with self.app.app_context():
             self.db = SQLAlchemy()

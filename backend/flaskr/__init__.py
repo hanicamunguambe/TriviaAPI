@@ -168,19 +168,32 @@ def create_app(test_config=None):
     @app.route('/question/search', methods=['POST'])
     def search_questions(): 
         body = request.get_json()
-        search_term = body.get('search', None)
-        selection = Question.query.filter(Question.question.ilike(f'%{search_term}%')).all()
-        current_questions = paginate_question(request, selection)
-        
-        if selection == None: 
-            abort(404)
-        
-        return jsonify({
-            'success': True,
-            'questions': current_questions,
-            'total_questions': len(selection)
-        })
+       
+        question_data = []
+        try:
+            selection = Question.query.filter(Question.question.ilike('%' + body['searchTerm'] + '%'))
+            current_questions = paginate_question(request, selection)
+            
 
+            for data in selection :
+                question_data.append({
+                    "answer": data.answer,
+                    "category": data.category,
+                    "difficulty": data.difficulty,
+                    "id": data.id,
+                    "question": data.question
+                })
+            if question_data == 0: 
+                abort(404)
+            
+            return jsonify({
+                'success': True,
+                'questions':  question_data,
+                'total_questions': len(question_data),
+                'current_category':  current_questions
+            })
+        except:
+            abort(404)
     """
     @TODO:
     Create a GET endpoint to get questions based on category.
@@ -220,17 +233,21 @@ def create_app(test_config=None):
 
         try:
             body = request.get_json()
-            category_quiz = body.get('category_quiz')
-            question_prev = body.get('question_prev')
+            category_quiz = body.get('category_quiz', None)
+            question = Question.query.all()
+            question_prev = body.get('question_prev', None)
             category_id = category_quiz['id']
 
-            if category_id == 0:
-                questions_data = Question.query.filter(Question.id.notin_(question_prev)).all()
-            else:
-                questions_data = Question.query.filter(Question.id.notin_(question_prev), Question.category == category_id).all()
-                questions = None
-                if(questions_data):
-                    questions = random.choice(questions_data)
+            if category_id != 0:
+                questions_data = Category.query.filter(Category.id == category_quiz.get('id')).first()
+                if questions_data is None:
+                    abort(404)
+
+                question = question.filter(Question.category == category_quiz['id'])
+
+                if question_prev:
+                    question = question.filter(Question.id.notin_(question_prev))
+                questions = question.order_by(db.func.random()).first()
 
                 return jsonify({
                     'success': True,
