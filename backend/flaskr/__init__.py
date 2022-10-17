@@ -174,7 +174,6 @@ def create_app(test_config=None):
             selection = Question.query.filter(Question.question.ilike('%' + body['searchTerm'] + '%'))
             current_questions = paginate_question(request, selection)
             
-
             for data in selection :
                 question_data.append({
                     "answer": data.answer,
@@ -202,19 +201,24 @@ def create_app(test_config=None):
     categories in the left column will cause only questions of that
     category to be shown.
     """
-    @app.route('/categories/<int:category_id>/questions>')
+    @app.route('/categories/<int:category_id>/questions', methods=['GET'])
     def questions_category(category_id):
 
         try:
-            selection =  Question.query.filter(Question.category == category_id).one_or_none()
+            category =  Category.query.filter(Category.id == category_id).one_or_none()
+            if category is None:
+                abort(404)
+
+            selection = Question.query.filter(Question.category == category_id).all()
             current_questions = paginate_question(request, selection)
 
             return jsonify({
                 'success': True,
                 'questions': current_questions,
-                'total_questions': len(selection),
+                'total_questions': len(current_questions),
                 'current_category': category_id
             })
+            
         except:
             abort(404)
     """

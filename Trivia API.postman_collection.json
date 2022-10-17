@@ -1,0 +1,541 @@
+{
+	"info": {
+		"_postman_id": "7c5ee75b-fe00-434c-a6f0-16fa4f7641c8",
+		"name": "Trivia API",
+		"description": "Project documentation for Trivia API Udacity. It runs in local machine [127.0.0.1:5000](http://127.0.0.1:5000/) for backend and localhost:3000 for frontend\n\nEndFra",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18316514"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "list all category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/categories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"categories"
+							]
+						},
+						"description": "Get all categories\n\nreturns a list of available category."
+					},
+					"response": [
+						{
+							"name": "list all category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:5000/categories",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.2.2 Python/3.10.7"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 20:45:25 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "119"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Autorization"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PATCH, OPTIONS"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"categories\": {\n        \"1\": \"Science\",\n        \"2\": \"Art\",\n        \"3\": \"Geography\",\n        \"4\": \"History\",\n        \"5\": \"Entertainment\",\n        \"6\": \"Sports\"\n    },\n    \"success\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "list questions by categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/categories/2/questions",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"categories",
+								"2",
+								"questions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Question",
+			"item": [
+				{
+					"name": "list all question in category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/questions",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"questions"
+							]
+						},
+						"description": "Get questions and categories\n\nreturns list of questions in category and categories.\n\ncontains paginations with group 10."
+					},
+					"response": [
+						{
+							"name": "list all question in category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/questions",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"questions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.2.2 Python/3.10.7"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 20:46:46 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1576"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Autorization"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PATCH, OPTIONS"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"categories\": {\n        \"1\": \"Science\",\n        \"2\": \"Art\",\n        \"3\": \"Geography\",\n        \"4\": \"History\",\n        \"5\": \"Entertainment\",\n        \"6\": \"Sports\"\n    },\n    \"current_category\": null,\n    \"questions\": [\n        {\n            \"answer\": \"Tom Cruise\",\n            \"category\": \"5\",\n            \"difficulty\": 4,\n            \"id\": 4,\n            \"question\": \"What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?\"\n        },\n        {\n            \"answer\": \"Edward Scissorhands\",\n            \"category\": \"5\",\n            \"difficulty\": 3,\n            \"id\": 6,\n            \"question\": \"What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?\"\n        },\n        {\n            \"answer\": \"Muhammad Ali\",\n            \"category\": \"4\",\n            \"difficulty\": 1,\n            \"id\": 9,\n            \"question\": \"What boxer's original name is Cassius Clay?\"\n        },\n        {\n            \"answer\": \"Brazil\",\n            \"category\": \"6\",\n            \"difficulty\": 3,\n            \"id\": 10,\n            \"question\": \"Which is the only team to play in every soccer World Cup tournament?\"\n        },\n        {\n            \"answer\": \"Uruguay\",\n            \"category\": \"6\",\n            \"difficulty\": 4,\n            \"id\": 11,\n            \"question\": \"Which country won the first ever soccer World Cup in 1930?\"\n        },\n        {\n            \"answer\": \"George Washington Carver\",\n            \"category\": \"4\",\n            \"difficulty\": 2,\n            \"id\": 12,\n            \"question\": \"Who invented Peanut Butter?\"\n        },\n        {\n            \"answer\": \"Lake Victoria\",\n            \"category\": \"3\",\n            \"difficulty\": 2,\n            \"id\": 13,\n            \"question\": \"What is the largest lake in Africa?\"\n        },\n        {\n            \"answer\": \"The Palace of Versailles\",\n            \"category\": \"3\",\n            \"difficulty\": 3,\n            \"id\": 14,\n            \"question\": \"In which royal palace would you find the Hall of Mirrors?\"\n        },\n        {\n            \"answer\": \"Agra\",\n            \"category\": \"3\",\n            \"difficulty\": 2,\n            \"id\": 15,\n            \"question\": \"The Taj Mahal is located in which Indian city?\"\n        },\n        {\n            \"answer\": \"Escher\",\n            \"category\": \"2\",\n            \"difficulty\": 1,\n            \"id\": 16,\n            \"question\": \"Which Dutch graphic artist–initials M C was a creator of optical illusions?\"\n        }\n    ],\n    \"success\": true,\n    \"total_question\": 19\n}"
+						}
+					]
+				},
+				{
+					"name": "delete question by id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/questions/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"questions",
+								"4"
+							]
+						},
+						"description": "Delete question by id\n\nreturns the id deleted and the list of available questions in current category."
+					},
+					"response": [
+						{
+							"name": "delete question by id=4",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:5000/questions/4",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"questions",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.2.2 Python/3.10.7"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 20:47:50 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1406"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Autorization"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PATCH, OPTIONS"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"delected\": 4,\n    \"questions\": [\n        {\n            \"answer\": \"Edward Scissorhands\",\n            \"category\": \"5\",\n            \"difficulty\": 3,\n            \"id\": 6,\n            \"question\": \"What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?\"\n        },\n        {\n            \"answer\": \"Muhammad Ali\",\n            \"category\": \"4\",\n            \"difficulty\": 1,\n            \"id\": 9,\n            \"question\": \"What boxer's original name is Cassius Clay?\"\n        },\n        {\n            \"answer\": \"Brazil\",\n            \"category\": \"6\",\n            \"difficulty\": 3,\n            \"id\": 10,\n            \"question\": \"Which is the only team to play in every soccer World Cup tournament?\"\n        },\n        {\n            \"answer\": \"Uruguay\",\n            \"category\": \"6\",\n            \"difficulty\": 4,\n            \"id\": 11,\n            \"question\": \"Which country won the first ever soccer World Cup in 1930?\"\n        },\n        {\n            \"answer\": \"George Washington Carver\",\n            \"category\": \"4\",\n            \"difficulty\": 2,\n            \"id\": 12,\n            \"question\": \"Who invented Peanut Butter?\"\n        },\n        {\n            \"answer\": \"Lake Victoria\",\n            \"category\": \"3\",\n            \"difficulty\": 2,\n            \"id\": 13,\n            \"question\": \"What is the largest lake in Africa?\"\n        },\n        {\n            \"answer\": \"The Palace of Versailles\",\n            \"category\": \"3\",\n            \"difficulty\": 3,\n            \"id\": 14,\n            \"question\": \"In which royal palace would you find the Hall of Mirrors?\"\n        },\n        {\n            \"answer\": \"Agra\",\n            \"category\": \"3\",\n            \"difficulty\": 2,\n            \"id\": 15,\n            \"question\": \"The Taj Mahal is located in which Indian city?\"\n        },\n        {\n            \"answer\": \"Escher\",\n            \"category\": \"2\",\n            \"difficulty\": 1,\n            \"id\": 16,\n            \"question\": \"Which Dutch graphic artist–initials M C was a creator of optical illusions?\"\n        },\n        {\n            \"answer\": \"Mona Lisa\",\n            \"category\": \"2\",\n            \"difficulty\": 3,\n            \"id\": 17,\n            \"question\": \"La Giaconda is better known as what?\"\n        }\n    ],\n    \"success\": true,\n    \"total_questions\": 18\n}"
+						}
+					]
+				},
+				{
+					"name": "Add question",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"answer\": \"Tom Cruise\",\r\n        \"category\": 5,\r\n        \"difficulty\": 4,\r\n        \"id\": 28,\r\n        \"question\": \"What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?\"\r\n    \r\n}\r\n    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/question/create",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"question",
+								"create"
+							]
+						},
+						"description": "Add a question\n\nReturns the questions id and list the all questions"
+					},
+					"response": [
+						{
+							"name": "Add question",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"answer\": \"Tom Cruise\",\r\n        \"category\": 5,\r\n        \"difficulty\": 4,\r\n        \"id\": 28,\r\n        \"question\": \"What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?\"\r\n    \r\n}\r\n    ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/question/create",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"question",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.2.2 Python/3.10.7"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 20:49:01 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1406"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Autorization"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PATCH, OPTIONS"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"created\": 26,\n    \"questions\": [\n        {\n            \"answer\": \"Edward Scissorhands\",\n            \"category\": \"5\",\n            \"difficulty\": 3,\n            \"id\": 6,\n            \"question\": \"What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?\"\n        },\n        {\n            \"answer\": \"Muhammad Ali\",\n            \"category\": \"4\",\n            \"difficulty\": 1,\n            \"id\": 9,\n            \"question\": \"What boxer's original name is Cassius Clay?\"\n        },\n        {\n            \"answer\": \"Brazil\",\n            \"category\": \"6\",\n            \"difficulty\": 3,\n            \"id\": 10,\n            \"question\": \"Which is the only team to play in every soccer World Cup tournament?\"\n        },\n        {\n            \"answer\": \"Uruguay\",\n            \"category\": \"6\",\n            \"difficulty\": 4,\n            \"id\": 11,\n            \"question\": \"Which country won the first ever soccer World Cup in 1930?\"\n        },\n        {\n            \"answer\": \"George Washington Carver\",\n            \"category\": \"4\",\n            \"difficulty\": 2,\n            \"id\": 12,\n            \"question\": \"Who invented Peanut Butter?\"\n        },\n        {\n            \"answer\": \"Lake Victoria\",\n            \"category\": \"3\",\n            \"difficulty\": 2,\n            \"id\": 13,\n            \"question\": \"What is the largest lake in Africa?\"\n        },\n        {\n            \"answer\": \"The Palace of Versailles\",\n            \"category\": \"3\",\n            \"difficulty\": 3,\n            \"id\": 14,\n            \"question\": \"In which royal palace would you find the Hall of Mirrors?\"\n        },\n        {\n            \"answer\": \"Agra\",\n            \"category\": \"3\",\n            \"difficulty\": 2,\n            \"id\": 15,\n            \"question\": \"The Taj Mahal is located in which Indian city?\"\n        },\n        {\n            \"answer\": \"Escher\",\n            \"category\": \"2\",\n            \"difficulty\": 1,\n            \"id\": 16,\n            \"question\": \"Which Dutch graphic artist–initials M C was a creator of optical illusions?\"\n        },\n        {\n            \"answer\": \"Mona Lisa\",\n            \"category\": \"2\",\n            \"difficulty\": 3,\n            \"id\": 17,\n            \"question\": \"La Giaconda is better known as what?\"\n        }\n    ],\n    \"success\": true,\n    \"total_questions\": 19\n}"
+						}
+					]
+				},
+				{
+					"name": "Search question",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchTerm\": \"who\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/question/search",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"question",
+								"search"
+							]
+						},
+						"description": "Question search\n\nReturns result based on the search tearm. in this example we have who as the search term, saw the results."
+					},
+					"response": [
+						{
+							"name": "Search question",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"searchTerm\": \"who\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/question/search",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"question",
+										"search"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.2.2 Python/3.10.7"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 20:50:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "716"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Autorization"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PATCH, OPTIONS"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"current_category\": [\n        {\n            \"answer\": \"George Washington Carver\",\n            \"category\": \"4\",\n            \"difficulty\": 2,\n            \"id\": 12,\n            \"question\": \"Who invented Peanut Butter?\"\n        },\n        {\n            \"answer\": \"Alexander Fleming\",\n            \"category\": \"1\",\n            \"difficulty\": 3,\n            \"id\": 21,\n            \"question\": \"Who discovered penicillin?\"\n        },\n        {\n            \"answer\": \"craveirinha\",\n            \"category\": \"4\",\n            \"difficulty\": 3,\n            \"id\": 24,\n            \"question\": \"Who is Craveirinha?\"\n        }\n    ],\n    \"questions\": [\n        {\n            \"answer\": \"George Washington Carver\",\n            \"category\": \"4\",\n            \"difficulty\": 2,\n            \"id\": 12,\n            \"question\": \"Who invented Peanut Butter?\"\n        },\n        {\n            \"answer\": \"Alexander Fleming\",\n            \"category\": \"1\",\n            \"difficulty\": 3,\n            \"id\": 21,\n            \"question\": \"Who discovered penicillin?\"\n        },\n        {\n            \"answer\": \"craveirinha\",\n            \"category\": \"4\",\n            \"difficulty\": 3,\n            \"id\": 24,\n            \"question\": \"Who is Craveirinha?\"\n        }\n    ],\n    \"success\": true,\n    \"total_questions\": 3\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
