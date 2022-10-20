@@ -1,9 +1,11 @@
 
 import os
+import string
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import random
+from sqlalchemy import cast
 
 from models import setup_db, Question, Category, db
 
@@ -48,7 +50,8 @@ def create_app(test_config=None):
     Create an endpoint to handle GET requests
     for all available categories.
     """
-    @app.route('/categories')
+
+    @app.route('/categories', methods = ['GET'])
     def categories():
         categories = Category.query.all()
         
@@ -71,7 +74,7 @@ def create_app(test_config=None):
     ten questions per page and pagination at the bottom of the screen for three pages.
     Clicking on the page numbers should update the questions.
     """
-    @app.route('/questions')
+    @app.route('/questions', methods = ['GET'])
     def questions():
         #get request for question n category
         selection = Question.query.order_by(Question.id).all()
@@ -113,7 +116,7 @@ def create_app(test_config=None):
 
           return jsonify({
                 'success': True,
-                'delected': question_id,
+                'deleted': question_id,
                 'questions': current_questions,
                 'total_questions': len(Question.query.all()) 
           })
@@ -201,26 +204,26 @@ def create_app(test_config=None):
     categories in the left column will cause only questions of that
     category to be shown.
     """
-    @app.route('/categories/<int:category_id>/questions', methods=['GET'])
+
+    @app.route('/categories/<int:category_id>/questions')
     def questions_category(category_id):
 
-        try:
-            category =  Category.query.filter(Category.id == category_id).one_or_none()
-            if category is None:
-                abort(404)
-
-            selection = Question.query.filter(Question.category == category_id).all()
+        # try:
+            selection =  Question.query.filter(Question.category == category_id).all()
             current_questions = paginate_question(request, selection)
-
+            
             return jsonify({
                 'success': True,
                 'questions': current_questions,
-                'total_questions': len(current_questions),
+                'total_questions': len(selection),
                 'current_category': category_id
-            })
+              })
+             
+        # except Exception as e:
+        #     print(e)
+        #     abort(404)
             
-        except:
-            abort(404)
+
     """
     @TODO:
     Create a POST endpoint to get questions to play the quiz.
@@ -237,9 +240,9 @@ def create_app(test_config=None):
 
         try:
             body = request.get_json()
-            category_quiz = body.get('category_quiz', None)
+            category_quiz = body.get('category_quiz', '')
             question = Question.query.all()
-            question_prev = body.get('question_prev', None)
+            question_prev = body.get('question_prev', '')
             category_id = category_quiz['id']
 
             if category_id != 0:

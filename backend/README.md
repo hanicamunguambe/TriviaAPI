@@ -71,9 +71,11 @@ One note before you delve into your tasks: for each endpoint, you are expected t
 
 You will need to provide detailed documentation of your API endpoints including the URL, request parameters, and the response body. Use the example below as a reference.
 
-### Documentation Example
+### Documentation Trivia API
+Project documentation for Trivia API Udacity. It runs in local machine 127.0.0.1:5000 for backend and localhost:3000 for frontend
 
-`GET '/api/v1.0/categories'`
+### Categories
+`GET 'http://127.0.0.1:5000/categories'`
 
 - Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category
 - Request Arguments: None
@@ -81,12 +83,384 @@ You will need to provide detailed documentation of your API endpoints including 
 
 ```json
 {
-  "1": "Science",
-  "2": "Art",
-  "3": "Geography",
-  "4": "History",
-  "5": "Entertainment",
-  "6": "Sports"
+    "categories": {
+        "1": "Science",
+        "2": "Art",
+        "3": "Geography",
+        "4": "History",
+        "5": "Entertainment",
+        "6": "Sports"
+    },
+    "success": true
+}
+```
+`GET 'http://127.0.0.1:5000/categories/6/questions'`
+
+- Fecthes a list of questions in categories with categories id and questions thats belongs to a specif category
+- Request Arguments: None
+- Returns: an object `categories` in `questions` that contains categories and questions
+
+```json
+{
+  "current_category": 6,
+	"questions": [
+		{
+			"answer": "Brazil",
+			"category": 6,
+			"difficulty": 3,
+			"id": 10,
+			"question": "Which is the only team to play in every soccer World Cup tournament?"
+		},
+		{
+			"answer": "Uruguay",
+			"category": 6,
+			"difficulty": 4,
+			"id": 11,
+			"question": "Which country won the first ever soccer World Cup in 1930?"
+		}
+	],
+  "success": true,
+  "total_questions": 2
+}
+```
+
+### Questions
+
+`GET 'http://127.0.0.1:5000/questions'`
+
+- Fectches a list all question in category
+- Request Arguments: None
+- Returns objects that contains a list of question in category
+
+```json
+{
+    "categories": {
+        "1": "Science",
+        "2": "Art",
+        "3": "Geography",
+        "4": "History",
+        "5": "Entertainment",
+        "6": "Sports"
+    },
+    "current_category": null,
+    "questions": [
+        {
+            "answer": "Tom Cruise",
+            "category": "5",
+            "difficulty": 4,
+            "id": 4,
+            "question": "What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?"
+        },
+        {
+            "answer": "Edward Scissorhands",
+            "category": "5",
+            "difficulty": 3,
+            "id": 6,
+            "question": "What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?"
+        },
+        {
+            "answer": "Muhammad Ali",
+            "category": "4",
+            "difficulty": 1,
+            "id": 9,
+            "question": "What boxer's original name is Cassius Clay?"
+        },
+        {
+            "answer": "Brazil",
+            "category": "6",
+            "difficulty": 3,
+            "id": 10,
+            "question": "Which is the only team to play in every soccer World Cup tournament?"
+        },
+        {
+            "answer": "Uruguay",
+            "category": "6",
+            "difficulty": 4,
+            "id": 11,
+            "question": "Which country won the first ever soccer World Cup in 1930?"
+        },
+        {
+            "answer": "George Washington Carver",
+            "category": "4",
+            "difficulty": 2,
+            "id": 12,
+            "question": "Who invented Peanut Butter?"
+        },
+        {
+            "answer": "Lake Victoria",
+            "category": "3",
+            "difficulty": 2,
+            "id": 13,
+            "question": "What is the largest lake in Africa?"
+        },
+        {
+            "answer": "The Palace of Versailles",
+            "category": "3",
+            "difficulty": 3,
+            "id": 14,
+            "question": "In which royal palace would you find the Hall of Mirrors?"
+        },
+        {
+            "answer": "Agra",
+            "category": "3",
+            "difficulty": 2,
+            "id": 15,
+            "question": "The Taj Mahal is located in which Indian city?"
+        },
+        {
+            "answer": "Escher",
+            "category": "2",
+            "difficulty": 1,
+            "id": 16,
+            "question": "Which Dutch graphic artist–initials M C was a creator of optical illusions?"
+        }
+    ],
+    "success": true,
+    "total_question": 19
+}
+```
+
+`DELETE 'http://127.0.0.1:5000/questions/4'`
+
+- Delete question by id
+- Request Arguments: None
+- Returns objects that contains a list of question and the id of question deleted
+```json
+{
+    "delected": 4,
+    "questions": [
+        {
+            "answer": "Edward Scissorhands",
+            "category": "5",
+            "difficulty": 3,
+            "id": 6,
+            "question": "What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?"
+        },
+        {
+            "answer": "Muhammad Ali",
+            "category": "4",
+            "difficulty": 1,
+            "id": 9,
+            "question": "What boxer's original name is Cassius Clay?"
+        },
+        {
+            "answer": "Brazil",
+            "category": "6",
+            "difficulty": 3,
+            "id": 10,
+            "question": "Which is the only team to play in every soccer World Cup tournament?"
+        },
+        {
+            "answer": "Uruguay",
+            "category": "6",
+            "difficulty": 4,
+            "id": 11,
+            "question": "Which country won the first ever soccer World Cup in 1930?"
+        },
+        {
+            "answer": "George Washington Carver",
+            "category": "4",
+            "difficulty": 2,
+            "id": 12,
+            "question": "Who invented Peanut Butter?"
+        },
+        {
+            "answer": "Lake Victoria",
+            "category": "3",
+            "difficulty": 2,
+            "id": 13,
+            "question": "What is the largest lake in Africa?"
+        },
+        {
+            "answer": "The Palace of Versailles",
+            "category": "3",
+            "difficulty": 3,
+            "id": 14,
+            "question": "In which royal palace would you find the Hall of Mirrors?"
+        },
+        {
+            "answer": "Agra",
+            "category": "3",
+            "difficulty": 2,
+            "id": 15,
+            "question": "The Taj Mahal is located in which Indian city?"
+        },
+        {
+            "answer": "Escher",
+            "category": "2",
+            "difficulty": 1,
+            "id": 16,
+            "question": "Which Dutch graphic artist–initials M C was a creator of optical illusions?"
+        },
+        {
+            "answer": "Mona Lisa",
+            "category": "2",
+            "difficulty": 3,
+            "id": 17,
+            "question": "La Giaconda is better known as what?"
+        }
+    ],
+    "success": true,
+    "total_questions": 18
+}
+```
+
+`POST 'http://127.0.0.1:5000/question/create'`
+
+- Add a new question
+- Returns objects that contains a list of question and id of the question created
+
+```body
+{
+      "answer": "Tom Cruise",
+        "category": 5,
+        "difficulty": 4,
+        "id": 28,
+        "question": "What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?"
+    
+}  
+```
+
+```json
+{
+    "created": 26,
+    "questions": [
+        {
+            "answer": "Edward Scissorhands",
+            "category": "5",
+            "difficulty": 3,
+            "id": 6,
+            "question": "What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?"
+        },
+        {
+            "answer": "Muhammad Ali",
+            "category": "4",
+            "difficulty": 1,
+            "id": 9,
+            "question": "What boxer's original name is Cassius Clay?"
+        },
+        {
+            "answer": "Brazil",
+            "category": "6",
+            "difficulty": 3,
+            "id": 10,
+            "question": "Which is the only team to play in every soccer World Cup tournament?"
+        },
+        {
+            "answer": "Uruguay",
+            "category": "6",
+            "difficulty": 4,
+            "id": 11,
+            "question": "Which country won the first ever soccer World Cup in 1930?"
+        },
+        {
+            "answer": "George Washington Carver",
+            "category": "4",
+            "difficulty": 2,
+            "id": 12,
+            "question": "Who invented Peanut Butter?"
+        },
+        {
+            "answer": "Lake Victoria",
+            "category": "3",
+            "difficulty": 2,
+            "id": 13,
+            "question": "What is the largest lake in Africa?"
+        },
+        {
+            "answer": "The Palace of Versailles",
+            "category": "3",
+            "difficulty": 3,
+            "id": 14,
+            "question": "In which royal palace would you find the Hall of Mirrors?"
+        },
+        {
+            "answer": "Agra",
+            "category": "3",
+            "difficulty": 2,
+            "id": 15,
+            "question": "The Taj Mahal is located in which Indian city?"
+        },
+        {
+            "answer": "Escher",
+            "category": "2",
+            "difficulty": 1,
+            "id": 16,
+            "question": "Which Dutch graphic artist–initials M C was a creator of optical illusions?"
+        },
+        {
+            "answer": "Mona Lisa",
+            "category": "2",
+            "difficulty": 3,
+            "id": 17,
+            "question": "La Giaconda is better known as what?"
+        }
+    ],
+    "success": true,
+    "total_questions": 19
+}
+```
+
+`POST 'http://127.0.0.1:5000/question/search'`
+
+- Fectches a list of all question based on search term
+- Returns objects that contains a list of question based on search term
+
+```body
+{
+    "searchTerm": "who"
+}
+```
+```json
+{
+    "current_category": [
+        {
+            "answer": "George Washington Carver",
+            "category": "4",
+            "difficulty": 2,
+            "id": 12,
+            "question": "Who invented Peanut Butter?"
+        },
+        {
+            "answer": "Alexander Fleming",
+            "category": "1",
+            "difficulty": 3,
+            "id": 21,
+            "question": "Who discovered penicillin?"
+        },
+        {
+            "answer": "craveirinha",
+            "category": "4",
+            "difficulty": 3,
+            "id": 24,
+            "question": "Who is Craveirinha?"
+        }
+    ],
+    "questions": [
+        {
+            "answer": "George Washington Carver",
+            "category": "4",
+            "difficulty": 2,
+            "id": 12,
+            "question": "Who invented Peanut Butter?"
+        },
+        {
+            "answer": "Alexander Fleming",
+            "category": "1",
+            "difficulty": 3,
+            "id": 21,
+            "question": "Who discovered penicillin?"
+        },
+        {
+            "answer": "craveirinha",
+            "category": "4",
+            "difficulty": 3,
+            "id": 24,
+            "question": "Who is Craveirinha?"
+        }
+    ],
+    "success": true,
+    "total_questions": 3
 }
 ```
 
