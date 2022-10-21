@@ -238,31 +238,58 @@ def create_app(test_config=None):
     @app.route('/quizzes', methods=['POST'])
     def quiz():
 
-        try:
+        # try:
             body = request.get_json()
             category_quiz = body.get('category_quiz', '')
-            question = Question.query.all()
+            questions = Question.query.all()
             question_prev = body.get('question_prev', '')
-            category_id = category_quiz['id']
 
-            if category_id != 0:
-                questions_data = Category.query.filter(Category.id == category_quiz.get('id')).first()
-                if questions_data is None:
-                    abort(404)
+            if category_quiz == 0:
+                 count_question = [question.format() for question in questions]
+                 random_question = random.choice(count_question)
+                 if (random_question == question_prev):
+                    count = count - 1
 
-                question = question.filter(Question.category == category_quiz['id'])
+                    if(count==0):
+                        return jsonify({
+                            'success': True,
+                            'question': False
+                        })
+                 return jsonify({
+                    'success': True,
+                    'question': random_question
+                 })
 
-                if question_prev:
-                    question = question.filter(Question.id.notin_(question_prev))
-                questions = question.order_by(db.func.random()).first()
+            questions_data = Category.query.filter(Category.id == category_quiz).first()
+            if questions_data is None:
+               abort(404)
 
+            questions = Question.query.filter(Question.category == questions_data.id).all()
+            count_question = [question.format() for question in questions]
+            random_question = random.choice(count_question)
+            if (random_question == question_prev):
+                count = count - 1
+                if(count==0):
+                    return jsonify({
+                            'success': True,
+                            'question': False
+                    })
                 return jsonify({
                     'success': True,
-                    'question': questions.format(),
-                    'question_previous': question_prev
+                    'question': random_question
                 })
-        except:
-            abort(422)
+
+            #         if question_prev:
+            #             question = question.filter(Question.id.notin_(question_prev))
+            #         questions = question.order_by(db.func.random()).first()
+
+            #         return jsonify({
+            #             'success': True,
+            #             'question': questions.format(),
+                    
+            #         })
+            # except:
+            #     abort(422)
     """
     @TODO:
     Create error handlers for all expected errors
